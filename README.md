@@ -13,3 +13,5 @@ moved around as plain strings, not JSON.
 Notably, the code features a little formal address language that is essentially a precursor of RON (see http://github.com/gritzko/ron).
 Pieces of a document are addressable, hence cacheable.
 All recalculations are incremental, all DOM updates are also incremental.
+
+The engine was created by @gritzko, @abalandin in 2011-2012.
