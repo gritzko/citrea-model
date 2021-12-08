@@ -15,3 +15,7 @@ Pieces of a document are addressable, hence cacheable.
 All recalculations are incremental, all DOM updates are also incremental.
 
 The engine was created by @gritzko, @abalandin in 2011-2012.
+
+For a more detailed description of the technology, see [story.md][s].
+
+[s]: ./story.md
