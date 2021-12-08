@@ -43,7 +43,7 @@ I have to specially mention the Papyrus content addressing system. It all starte
 [h]: http://ceur-ws.org/Vol-823/dah2011_paper_3.pdf
 [o]: http://doc.replicated.cc/%5EWiki/ron.sm
 
-Other parts of the system also involved into different things. In this regard, I recommend the [chronofold][c] data structure, which I believe is an improvement over the classic weave.
+Other parts of the system also evolved into different things. In this regard, I recommend the [chronofold][c] data structure, which I believe is an improvement over the classic weave.
 
 [c]: https://arxiv.org/pdf/2002.09511.pdf
 
@@ -61,7 +61,7 @@ As a conclusion, let me preserve several funny anecdotes for history.
     happened next, he promptly brought a palette of approved colors from the
     designers - to assign them to users sequentially.
   - One interesting bug we encountered was a "poisoned document". The URL parsing
-    regex in the code was superlinear, but the problem obly becomes apparent on
+    regex in the code was superlinear, but the problem only becomes apparent on
     multiline URLs which almost noone uses. Once, some guy somewhere pasted a heavily
     escaped Wikipedia URL into his document. That resulted in the v8 regex engine
     hanging thus causing a server process to hang. The user probably had a different
