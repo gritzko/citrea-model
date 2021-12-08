@@ -1,4 +1,6 @@
-#   RICH TEXT CRDT CONSIDERATIONS
+#   Papyrus: rich text CRDT from 2012
+
+<img align="right" width="50%" src="./live2.png">
 
 This text is mostly a reply to the Ink&Switch [Peritext project][p] article.
 As it turned out, the algorithms they devised are very close to what I developed for the [Papyrus][c] real-time editor circa 2012. Actually, I tried different algorithms at the time (also, very close to what Ink&Switch did) and settled more or less on the same thing. Why is it worth mentioning today? Well, the editor worked in production for years and it had interesting internal machinery and a ton of optimizations.
@@ -11,7 +13,7 @@ So, it was in 2011-2012, before the React era, but JavaScript engines were quite
 [t]: https://www.researchgate.net/publication/221367739_Deep_hypertext_with_embedded_revision_control_implemented_in_regular_expressions
 [w]: https://webassembly.org/
 
-Enough of preable, how did it work? Especially, the rich text? The text was stored as a *weave*, a string consisting of all the characters that ever existed in the document. So, any historical version is a subsequence of the weave. There is a very nice [explanation of Causal Trees and weaves][a] by Alexei archagon Baboulevich. So, all the versioning and merge and undo/redo functionality is based on the weave. For performance reasons, the document's weave was split into paragraphs.
+Enough of preable, how did it work? Especially, the rich text? The text was stored as a *weave*, a string consisting of all the characters that ever existed in the document. So, any historical version is a subsequence of the weave. There is a very nice [explanation of Causal Trees and weaves][a] by Alexei "archagon" Baboulevich. So, all the versioning and merge and undo/redo functionality is based on the weave. For performance reasons, the document's weave was split into paragraphs.
 
 [a]: http://archagon.net/blog/2018/03/24/data-laced-with-history/
 
@@ -30,7 +32,7 @@ Structural formatting records point to paragraphs, while inline formatting point
 
 Papyrus did that slightly differently, e.g. it considered `'\n'` to be the first (invisible) symbol of the paragraph, but the effect was basically the same, so that is not worth studying.
 
-Compared to the Peritext approach, Papyrus cut a couple corners. First, Papyrus formatting ranges always used strictly last-write-wins merge logic. Second, there was no distinction between left and right attachment points and all formatting ranges worked the same way. For example, links grow at the end, exactly like bold or italic ranges. That way, every formatting range was a mathematically nice semi-open [b,e) interval. TBut MS Word does it differently (for a currently unknown reason). In my opinion, copying that leads into the legacy behavior trap: a "business user" will demand every MS Word feature to be implemented exactly as in MS Word. Google Docs is a good example of the resulting evolution. Whether it makes sense to re-implement every glitch from the 80s is an interesting question.
+Compared to the Peritext approach, Papyrus cut a couple corners. First, Papyrus formatting ranges always used strictly last-write-wins merge logic. Second, there was no distinction between left and right attachment points and all formatting ranges worked the same way. For example, links grow at the end, exactly like bold or italic ranges. That way, every formatting range was a mathematically nice semi-open [b,e) interval. But MS Word does it differently (for a currently unknown reason). In my opinion, copying that leads into the legacy behavior trap: a "business user" will demand every MS Word feature to be implemented exactly as in MS Word. Google Docs is a good example of the resulting evolution. Whether it makes sense to re-implement every glitch from the 80s is an interesting question.
 
 So, what about the performance? That was the interesting part. Rerendering HTML takes time, redrawing the DOM also takes time. How did Papyrus manage that? Effectively, it has its small internal build system able of incremental rebuilds -- like `make` or `gradle` or whatever your favorite language has. Once you edit a paragraph, it updates that entire paragraph, or maybe just one span inside it if the case is straightforward enough. Actually, most of the cases are pretty straightforward: sequential typing and backspacing. Once you optimize that happy path, you are half way done.
 
