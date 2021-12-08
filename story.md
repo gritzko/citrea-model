@@ -13,7 +13,7 @@ So, it was in 2011-2012, before the React era, but JavaScript engines were quite
 [t]: https://www.researchgate.net/publication/221367739_Deep_hypertext_with_embedded_revision_control_implemented_in_regular_expressions
 [w]: https://webassembly.org/
 
-Enough of preable, how did it work? Especially, the rich text? The text was stored as a *weave*, a string consisting of all the characters that ever existed in the document. So, any historical version is a subsequence of the weave. There is a very nice [explanation of Causal Trees and weaves][a] by Alexei "archagon" Baboulevich. So, all the versioning and merge and undo/redo functionality is based on the weave. For performance reasons, the document's weave was split into paragraphs.
+Enough of preamble, how did it work? Especially, the rich text? The text was stored as a *weave*, a string consisting of all the characters that ever existed in the document. So, any historical version is a subsequence of the weave. There is a very nice [explanation of Causal Trees and weaves][a] by Alexei "archagon" Baboulevich. So, all the versioning and merge and undo/redo functionality is based on the weave. For performance reasons, the document's weave was split into paragraphs.
 
 [a]: http://archagon.net/blog/2018/03/24/data-laced-with-history/
 
@@ -60,7 +60,7 @@ As a conclusion, let me preserve several funny anecdotes for history.
     the Yandex manager curating the project was consistently assigned brown. What
     happened next, he promptly brought a palette of approved colors from the
     designers - to assign them to users sequentially.
-  - One interesting bug we encountered was a "poisoned documents". The URL parsing
+  - One interesting bug we encountered was a "poisoned document". The URL parsing
     regex in the code was superlinear, but the problem obly becomes apparent on
     multiline URLs which almost noone uses. Once, some guy somewhere pasted a heavily
     escaped Wikipedia URL into his document. That resulted in the v8 regex engine
